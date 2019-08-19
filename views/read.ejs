@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Read Data</title>
+    <style>
+    table,tr,th,td{
+        border: 1px solid black;
+        border-collapse: collapse;
+        table-layout: auto;
+    }
+    </style>
+</head>
+<body>
+    <form action="/read" method="POST">
+        <table class="table-dark">
+            <thead>
+            <tr><th>Book Title</th>
+                <th>Author</th>
+                <th>Publisher</th>
+                <th>Date of Publication</th>
+                <th>Distributer</th>
+                <th>Price</th>
+                <th>Description</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><%=books.booktitle %></td>
+                <td><%=books.author %></td>
+                <td><%=books.publisher %></td>
+                <td><%=books.dob %></td>
+                <td><%=books.distributer %></td>
+                <td><%=books.price %></td>
+                <td><%=books.description %></td></tr>
+
+
+            </tbody>
+        </table>
+    </form>
+    
+</body>
+</html>

@@ -1,6 +1,13 @@
 const Express = require('express');
+
+var bodyParser= require('body-parser');
+
 var app=new Express();
 app.set('view engine','ejs');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true}));
+
 app.use(Express.static(__dirname+"/public"));
 
 app.get('/',(req,res)=>{
@@ -11,6 +18,10 @@ app.get('/viw',(req,res)=>{
     res.render('view',books);
 });
 
+app.post('/read',(req,res)=>{
+    var book = req.body;
+    res.render('read',{books:book});
+});
 
 
 books=[{
