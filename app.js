@@ -1,5 +1,18 @@
 const Express = require('express');
+const Mongoose = require('mongoose');
+var request = require('request');
+const Addbooks=Mongoose.model("bookdetails",{
+    title: String ,
+    author: String,
+    publisher:String,
+    dop: String,
+    distributer: String,
+    price:String,
+    description: String});
 
+ Mongoose.connect("mongodb://localhost:27017/bookdb");
+ 
+ 
 var bodyParser= require('body-parser');
 
 var app=new Express();
@@ -19,9 +32,41 @@ app.get('/viw',(req,res)=>{
 });
 
 app.post('/read',(req,res)=>{
-    var book = req.body;
-    res.render('read',{books:book});
+    console.log(req.body);
+    var book= Addbooks(req.body);
+    var result = book.save( (error)=>{
+        if(error){
+            throw error;
+            res.send(error);
+        }
+        else{
+            res.send('user created');
+        }
+    });
 });
+
+app.get('/getdatas',(req,res)=>{
+    result = Addbooks.find( (error,data)=>{
+         if(error){
+             throw error;
+         }
+         else{
+             res.send(data);
+         }
+     });
+});
+
+const getdataApi="http://localhost:3000/getdatas";
+
+app.get('/views',(req,res)=>{
+    request(getdataApi,(error,response,body)=>{
+        var data=JSON.parse(body);
+        console.log(data);
+        res.render('booksview',{'data':data});
+    });
+});
+
+
 
 
 books=[{
@@ -117,5 +162,5 @@ books=[{
 
 
 app.listen(process.env.PORT || 3000,()=>{
-    console.log("server running on port 3000");
+    console.log("server running on port :http://localhost:3000");
 });

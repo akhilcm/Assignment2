@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Viewbooks</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+    <!-- Links -->
+    <ul class="navbar-nav">
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/">AddBooks</a>
+      </li>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/viw">Viewbooks</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/views">BooksDB</a>
+      </li>
+    </ul>
+  
+  </nav>
+  <div class="container">
+    <div class="row">
+        <form action="/read" method="POST">
+            <table class="table">
+                <thead>
+                    <tr><th>Title</th>
+                    <th>Author</th>
+                    <th>Publisher</th>
+                    <th>Dop</th>
+                    <th>Distributer</th>
+                    <th>Price</th>
+                    <th>description</th></tr>
+                </thead>
+                 
+                <% for(var i=0;i<data.length;i++){ %>
+                <tbody>
+                <tr><td><%= data[i].title %></td>
+                 <td><%= data[i].author %></td>
+                <td><%= data[i].publisher %></td>
+                <td><%= data[i].dob %></td>
+                <td><%= data[i].distributer %></td>
+               <td><%= data[i].price %></td>
+               <td><%= data[i].description %></td></tr>
+                </tbody>
+                <%} %>
+                </table>
+                </form>
+    </div>
+</div>
+
+
+
+    
+</body>
+</html>
