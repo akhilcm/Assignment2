@@ -10,7 +10,7 @@ const Addbooks=Mongoose.model("bookdetails",{
     price:String,
     description: String});
 
- Mongoose.connect("mongodb://localhost:27017/bookdb");
+ Mongoose.connect("mongodb+srv://dbcm:dbcm@clustermy-zwohv.mongodb.net/test?retryWrites=true&w=majority");
  
  
 var bodyParser= require('body-parser');
@@ -159,6 +159,52 @@ books=[{
     'price': '175',
     'description': 'Will love win again as always'
 }];
+app.get('/bookall',(req,res)=>{
+
+    var result = Addbooks.find((error,data)=>{
+        if(error)
+        {
+            throw error;
+            res.send(error);
+        }
+        else
+        {
+            res.send(data);
+        }
+    });
+});
+
+app.get('/search',(req,res)=>{
+    res.render('search');
+});
+
+app.get('/bookname',(req,res)=>{
+    var item = req.query.title;
+    var result = Addbooks.find({title:item},(error,data)=>{
+        if(error)
+        {
+            throw error;
+            res.send(error);
+        }
+        else
+        {
+            res.send(data);
+        }
+    })
+
+});
+
+const Api = "http://localhost:3000/bookname";
+
+app.post('/viewsinglebook',(req,res)=>{
+
+    var item = req.body.title;
+
+    request(Api+"/?title="+item,(error,response,body)=>{
+        var data = JSON.parse(body);
+        res.render('searchsingle',{data:data});
+    })
+});
 
 
 app.listen(process.env.PORT || 3000,()=>{
