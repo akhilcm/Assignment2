@@ -56,7 +56,7 @@ app.get('/getdatas',(req,res)=>{
      });
 });
 
-const getdataApi="http://localhost:3000/getdatas";
+const getdataApi="http://bluesbook.herokuapp.com/getdatas";
 
 app.get('/views',(req,res)=>{
     request(getdataApi,(error,response,body)=>{
@@ -194,7 +194,7 @@ app.get('/bookname',(req,res)=>{
 
 });
 
-const Api = "http://localhost:3000/bookname";
+const Api = "http://bluesbook.herokuapp.com/bookname";
 
 app.post('/viewsinglebook',(req,res)=>{
 
